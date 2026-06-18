@@ -16,7 +16,7 @@ public class DataSource {
      * ###################
      */
 //    private static final String CLUB_FILE_PATH = "D:\\Repository\\Github\\Fleeforezz\\Lab\\teaching\\Coding\\clubs.txt";
-    private final String CLUB_FILE_PATH = "D:\\Github\\fleeforezz\\Lab\\teaching\\Coding\\FootballClubPlayerManagement\\src\\data\\clubs.txt";
+    private final String CLUB_FILE_PATH = "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\FootballClubPlayerManagement\\src\\data\\clubs.txt";
 
     /*
      * ###################
@@ -24,7 +24,7 @@ public class DataSource {
      * ###################
      */
 //    private static final String PLAYER_FILE_PATH = "D:\\Repository\\Github\\Fleeforezz\\Lab\\teaching\\Coding\\players.txt";
-    private final String PLAYER_FILE_PATH = "D:\\Github\\fleeforezz\\Lab\\teaching\\Coding\\FootballClubPlayerManagement\\src\\data\\players.txt";
+    private final String PLAYER_FILE_PATH = "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\FootballClubPlayerManagement\\src\\data\\players.txt";
 
     public DataSource() {
         
