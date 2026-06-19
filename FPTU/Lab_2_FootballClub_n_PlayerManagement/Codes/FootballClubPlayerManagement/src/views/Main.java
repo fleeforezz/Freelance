@@ -239,14 +239,27 @@ public class Main {
                             System.out.print(player.display());
                         }
                         UI.footer();
+                    } else {
+                        UI.tableHeader(playerCols, playerColWidth);
+                        UI.error("No matching player found for current position");
+                        UI.footer();
                     }
 
                     break;
                 case 12: // Save data to files
+                    clubController.saveToFile();
+                    playerController.saveToFile();
+                    System.out.println("\nData has been saved to files successfully!\n");
                     break;
                 case 13: // Load data from files
+                    clubController.reloadFromFile();
                     break;
                 case 14: // Quit program
+                    if (clubController.hasUnsavedChanges()) {
+                        clubController.saveToFile();
+                        playerController.saveToFile();
+                        System.out.println("\nUnsaved changes detected — data has been saved.");
+                    }
                     System.out.println("Goodbye !!!");
                     break;
                 default:

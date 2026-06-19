@@ -10,7 +10,7 @@ import utils.Inputter;
 
 public class ClubController implements IList<Club> {
 
-    DataSource context = new DataSource();
+    DataSource context = DataSource.getInstance();
     String URL_PATH = context.getClubFilePath();
 
     /*
@@ -64,16 +64,15 @@ public class ClubController implements IList<Club> {
         
         // Saved to club list
         context.clubList().add(newClub);
+        context.markChanged();
 
         // Confirm and save changes to file
-        if (Inputter.confirmSaveFile(
-                "Club",
-                context.clubList(),
-                URL_PATH
+        if (Inputter.confirmSave(
+                "Club"
         )) {
             return newClub;
         }
-
+        
         return null;
     }
 
@@ -99,6 +98,7 @@ public class ClubController implements IList<Club> {
         );
         if (!clubName.isEmpty()) {
             existClub.setClubName(clubName);
+            context.markChanged();
         }
 
         // Input updated player name
@@ -107,6 +107,7 @@ public class ClubController implements IList<Club> {
         );
         if (!sponserBrand.isEmpty()) {
             existClub.setSponcerBrand(sponserBrand);
+            context.markChanged();
         }
 
         // Input updated club budget
@@ -117,16 +118,17 @@ public class ClubController implements IList<Club> {
         );
         if (budget != -1) {
             existClub.setBudget(budget);
+            context.markChanged();
         }
         
         // Confirm and save changes to file
-        Inputter.confirmSaveFile(
-                "Club", 
-                context.clubList(), 
-                URL_PATH
-        );
-
-        return existClub;
+        if (Inputter.confirmSave(
+                "Club"
+        )) {
+            return existClub;
+        }
+        
+        return null;
     }
 
     /*
@@ -202,5 +204,20 @@ public class ClubController implements IList<Club> {
         for (Club club : clubs) {
             System.out.print(club.display());
         }
+    }
+    
+    // Save club list to file
+    public void saveToFile() {
+        context.saveClubs(context.clubList());
+    }
+    
+    // Reload all data from file
+    public boolean reloadFromFile() {
+        return context.reloadAll();
+    }
+    
+    // Check if there are any unsaved changes
+    public boolean hasUnsavedChanges() {
+        return context.isDataChanged();
     }
 }

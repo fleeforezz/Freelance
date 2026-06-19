@@ -13,9 +13,8 @@ import views.UI;
 
 public class PlayerController implements IList<Player> {
     
-    DataSource context = new DataSource();
+    DataSource context = DataSource.getInstance();
     ClubController clubController = new ClubController();
-    String URL_PATH = context.getPlayerFilePath();
     
     // UI Components
     String[] clubCols = {
@@ -119,12 +118,11 @@ public class PlayerController implements IList<Player> {
         
         // Add new player object to PLayer List
         context.playerList().add(newPlayer);
+        context.markChanged();
         
         // Confirm and save file
-        if (Inputter.confirmSaveFile(
-                "Player", 
-                context.playerList(), 
-                URL_PATH
+        if (Inputter.confirmSave(
+                "Player"
         )) {
             return newPlayer;
         }
@@ -154,6 +152,7 @@ public class PlayerController implements IList<Player> {
         );
         if (!playerName.isEmpty()) {
             existPlayer.setPlayerName(playerName);
+            context.markChanged();
         }
 
         // Input updated position
@@ -174,6 +173,7 @@ public class PlayerController implements IList<Player> {
         );
         if (!position.isEmpty()) {
             existPlayer.setPosition(position);
+            context.markChanged();
         }
 
         // Input updated shirt number
@@ -190,20 +190,19 @@ public class PlayerController implements IList<Player> {
 
             if (existShirtNumberInClub(shirtNumber, existPlayer.getClubId()) == null) {
                 existPlayer.setShirtNumber(shirtNumber);
+                context.markChanged();
                 break;
             } else {
                 System.out.println("Shirt number already exists in this club!");
             }
         }
 
-        // Confirm and save changes to file
-        Inputter.confirmSaveFile(
-                "Player",
-                context.playerList(),
-                URL_PATH
-        );
+        // Confirm and save changes to list
+        if (Inputter.confirmSave("Player")) {
+            return existPlayer;
+        }
 
-        return existPlayer;
+        return null;
     }
 
     /*
@@ -224,12 +223,11 @@ public class PlayerController implements IList<Player> {
 
         // Remove player from player list
         context.playerList().remove(player);
+        context.markChanged();
 
-        // Confirm and save changes to file
-        Inputter.confirmSaveFile(
-                "Player",
-                context.playerList(),
-                URL_PATH
+        // Confirm and save changes to list
+        Inputter.confirmSave(
+                "Player"
         );
         
         return true;
@@ -353,4 +351,7 @@ public class PlayerController implements IList<Player> {
         }
     }
     
+    public void saveToFile() {
+        context.savePlayers(context.playerList());
+    }
 }

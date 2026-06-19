@@ -1,7 +1,9 @@
 package utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,26 @@ import models.Club;
 import models.Player;
 
 public class DataSource {
+    
+    private static DataSource instance;
+    private boolean dataChanged = false;
+    
+    public void markChanged() {
+        dataChanged = true;
+    }
+    
+    public boolean isDataChanged() {
+        return dataChanged;
+    }
+    
+    public static DataSource getInstance() {
+        if (instance == null) {
+            instance = new DataSource();
+        }
+        return instance;
+    }
+    
+    private DataSource() { }
 
     /*
      * ###################
@@ -25,10 +47,6 @@ public class DataSource {
      */
 //    private static final String PLAYER_FILE_PATH = "D:\\Repository\\Github\\Fleeforezz\\Lab\\teaching\\Coding\\players.txt";
     private final String PLAYER_FILE_PATH = "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\FootballClubPlayerManagement\\src\\data\\players.txt";
-
-    public DataSource() {
-        
-    }
     
     private List<Club> clubs = null;
     private List<Player> players = null;
@@ -47,6 +65,37 @@ public class DataSource {
         }
         
         return players;
+    }
+    
+    /*
+    * #####################################################
+    * Combine 2 list for load the data up
+    * #####################################################
+    */
+    public boolean reloadAll() {
+        List<Club> newClubs;
+        List<Player> newPlayers;
+        try {
+            newClubs = loadClubs();
+            newPlayers = loadPLayers();
+        } catch (Exception e) {
+            System.out.println("Load data failed!");
+            return false;
+        }
+
+        if (clubs == null) {
+            clubs = new ArrayList<>();
+        }
+        if (players == null) {
+            players = new ArrayList<>();
+        }
+        clubs.clear();
+        clubs.addAll(newClubs);
+        players.clear();
+        players.addAll(newPlayers);
+
+        System.out.println("Load data successfully!");
+        return true;
     }
     
     /*
@@ -87,7 +136,6 @@ public class DataSource {
                  clubs.add(club);
              }
              
-             System.out.println("Loaded: " + clubs.size() + " clubs");
          } catch (IOException e) {
              System.out.println("Cannot read file: " + e.getMessage());
          } catch (NumberFormatException e) {
@@ -136,8 +184,6 @@ public class DataSource {
                  
                  players.add(player);
              }
-             
-             System.out.println("Loaded: " + players.size() + " players");
          } catch (IOException e) {
              System.out.println("Cannot read file: " + e.getMessage());
          } catch (NumberFormatException e) {
@@ -145,6 +191,40 @@ public class DataSource {
          }
         
         return players;
+    }
+    
+    /*
+    * ########################################################
+    * Save club list to file
+    * ########################################################
+    */
+    public void saveClubs(List<Club> clubsToSave) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CLUB_FILE_PATH))) {
+            for (Club c : clubsToSave) {
+                bw.write(c.getClubId() + ", " + c.getClubName() + ", "
+                        + c.getSponcerBrand() + ", " + c.getBudget());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot write club file: " + e.getMessage());
+        }
+    }
+
+    /*
+    * ########################################################
+    * Save player list to file
+    * ########################################################
+    */
+    public void savePlayers(List<Player> playersToSave) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(PLAYER_FILE_PATH))) {
+            for (Player p : playersToSave) {
+                bw.write(p.getPlayerId() + ", " + p.getClubId() + ", "
+                        + p.getPlayerName() + ", " + p.getPosition() + ", " + p.getShirtNumber());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot write player file: " + e.getMessage());
+        }
     }
 
     public String getClubFilePath() {

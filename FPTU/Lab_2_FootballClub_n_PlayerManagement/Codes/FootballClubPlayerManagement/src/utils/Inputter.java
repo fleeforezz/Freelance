@@ -1,10 +1,5 @@
 package utils;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -233,10 +228,8 @@ public class Inputter {
         Confirm save file
         ###############################
      */
-    public static boolean confirmSaveFile(
-            String recordName, 
-            List<?> listToSave, 
-            String FILE_PATH
+    public static boolean confirmSave(
+            String recordName
     ) {
         String decision = getString(
                 "Do you want to save this " + recordName + " to file ? (Y/y | N/n): ",
@@ -245,23 +238,7 @@ public class Inputter {
 
         switch (decision) {
             case "Y":
-                File file = new File(FILE_PATH);
-                if (file.getParentFile() != null) {
-                    file.getParentFile().mkdirs();
-                }
-                
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-                    
-                    for (Object item : listToSave) {
-                        writer.write(item.toString());
-                        writer.newLine();
-                    }
-                    
-                    return true;
-                } catch (IOException e) {
-                    System.out.println("Error saving " + recordName + " to file: " + e.getMessage());
-                }
-                break;
+                return true;
             case "N":
                 break;
             default:

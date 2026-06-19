@@ -11,3 +11,4 @@ CL-0010, AC Milan Sportline, Puma, 630
 CL-0011, Chelsea FC, Nike, 760
 CL-0012, Chelsea FC X Line, Nike, 780
 CL-0099, Test, Nike, 12
+CL-0015, Test, Test, 123
