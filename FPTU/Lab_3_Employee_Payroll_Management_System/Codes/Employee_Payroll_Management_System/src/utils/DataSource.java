@@ -1,5 +1,7 @@
 package utils;
 
+import enums.EmployeeRole;
+import enums.EmployeeStatus;
 import models.Employee;
 
 import java.io.BufferedReader;
@@ -52,7 +54,7 @@ public class DataSource {
     
     /*
     * #####################################################
-    * Combine 2 list for load the data up
+    * Combine list for load the data up
     * #####################################################
     */
     public boolean reloadAll() {
@@ -80,10 +82,10 @@ public class DataSource {
     * #############################################################
     */
     public List<Employee> loadEmployees() {
-        List<Employee> clubs = new ArrayList<>();
+        List<Employee> employees = new ArrayList<>();
+        String line = null;
 
          try (BufferedReader br = new BufferedReader(new FileReader(CLUB_FILE_PATH))) {
-             String line;
              
              while ((line = br.readLine()) != null) {                 
                  if (line.trim().isEmpty()) {
@@ -92,7 +94,7 @@ public class DataSource {
                  
                  String[] parts = line.split(",");
                  
-                 if (parts.length != 4) {
+                 if (parts.length != 7) {
                      System.out.println("Invalid record" + line);
                      continue;
                  }
@@ -105,20 +107,26 @@ public class DataSource {
                  int bonus = Integer.parseInt(parts[5].trim());
                  String status = parts[6].trim();
                  
-                 Employee club = new Employee(
-
+                 Employee employee = new Employee(
+                         id,
+                         name,
+                         EmployeeRole.parseRole(role),
+                         baseSalary,
+                         workingDays,
+                         bonus,
+                         EmployeeStatus.parseStatus(status)
                  );
-                 
-                 clubs.add(club);
+
+                 employees.add(employee);
              }
              
          } catch (IOException e) {
              System.out.println("Cannot read file: " + e.getMessage());
-         } catch (NumberFormatException e) {
-             System.out.println("Invalid budget format: " + e.getMessage());
+         } catch (Exception e) {
+             System.out.println("Invalid record: " + line);
          }
         
-        return clubs;
+        return employees;
     }
     
     /*
@@ -126,7 +134,7 @@ public class DataSource {
     * Save employees list to file
     * ########################################################
     */
-    public void saveClubs(List<Employee> employeesToSave) {
+    public void saveEmployee(List<Employee> employeesToSave) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(CLUB_FILE_PATH))) {
             for (Employee e : employeesToSave) {
                 bw.write(
