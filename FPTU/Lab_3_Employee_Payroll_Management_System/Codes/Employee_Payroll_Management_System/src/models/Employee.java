@@ -101,7 +101,7 @@ public class Employee {
      */
     public String display() {
         return String.format(
-                "| %-8s | %-24s | %-13s | %-8d | %-8d | %-8d | %-8s |\n",
+                "| %-8s | %-20s | %-13s | %-11d | %-12d | %-8d | %-8s |\n",
                 this.id, this.name, this.role, 
                 this.baseSalary, this.workingDays, 
                 this.bonus, this.status

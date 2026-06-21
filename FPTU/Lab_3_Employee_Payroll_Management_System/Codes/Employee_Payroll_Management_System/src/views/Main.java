@@ -26,7 +26,7 @@ public class Main {
         };
 
         int[] employeeColWidth = {
-            8, 24, 13, 8, 8, 8, 8
+            8, 20, 13, 8, 8, 8, 8
         };
 
         // Controllers
@@ -36,7 +36,7 @@ public class Main {
         List<Employee> employeeList = employeeController.ListAll();
 
         do {
-            UI.titleHeader(appTitle);
+            UI.titleHeader(appTitle, 74);
             System.out.println("| 1. Load employee data from file                                        |"); 
             System.out.println("| 2. Add a new employee                                                  |"); 
             System.out.println("| 3. Update employee information                                         |"); 
@@ -46,7 +46,7 @@ public class Main {
             System.out.println("| 7. Display employee list                                               |"); 
             System.out.println("| 8. Save data to file                                                   |"); 
             System.out.println("| 9. Quit program                                                        |"); 
-            UI.footer();
+            UI.border(74);
 
             choice = Inputter.getInt(
                     "Enter your choice: ",
@@ -75,11 +75,11 @@ public class Main {
                         for (Employee employee : employeeList) {
                             System.out.print(employee.display());
                         }
-                        UI.footer();
+                        UI.border(102);
                     } else {
                         UI.tableHeader(employeeCols, employeeColWidth);
                         UI.error("No data in system");
-                        UI.footer();
+                        UI.border(102);
                     }
                     break;
                 case 8:

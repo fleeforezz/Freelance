@@ -7,14 +7,13 @@ public class UI {
         Header Title
         ###############################
      */
-    public static void titleHeader(String title) {
-        String border = "----------------------------------------------------------------------";
-        
-        System.out.println(border);
+    public static void titleHeader(String title, int length) {
+
+        border(length);
         System.out.printf(
-                "| %-10s                                  |\n", title
+                "| %-10s                                     |\n", title
         );
-        System.out.println(border);
+        border(length);
     }
 
     /*
@@ -24,33 +23,36 @@ public class UI {
      */
     public static void tableHeader(String[] columns, int[] widths) {
         StringBuilder header = new StringBuilder();
-        String border = "----------------------------------------------------------------------";
-        
-        // Top border
-        header.append(border).append("\n");
         
         // Columns
         header.append("|");
+
+        int totalWidth = 1; // first |
+        
         for (int i = 0; i < columns.length; i++) {
-            header.append(String.format(" %-" + widths[i] + "s |" , columns[i]));
+            header.append(
+                    String.format(" %-" + widths[i] + "s |" , columns[i])
+            );
+
+            totalWidth += widths[i] + 4;
         }
-        header.append("\n");
         
-        // Bottom border
-        header.append(border);
-        
+        border(totalWidth);
         System.out.println(header.toString());
+        border(totalWidth);
     }
 
     /*
         ###############################
-        Footer
+        Border
         ###############################
      */
-    public static void footer() {
-        System.out.println(
-                "----------------------------------------------------------------------\n"
-        );
+    public static void border(int length) {
+        
+        for (int i = 0; i < length; i++) {
+            System.out.print("-");
+        }
+        System.out.print("\n");
     }
     
     /*
