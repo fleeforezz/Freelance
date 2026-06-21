@@ -2,7 +2,7 @@ package utils;
 
 public class Acceptable {
     
-    public static final String CLUB_VALID_ID = "^CL-\\d{4}$"; // CL-xxxx (e.g., CL-0001) 
+    public static final String CLUB_VALID_ID = "^CL-\\d{4}$"; // CL-xxxx (e.g., CL-0001)
     
     public static final String PLAYER_VALID_ID = "^P\\d{4}$"; // Pxxxx (e.g., P0001)
     
