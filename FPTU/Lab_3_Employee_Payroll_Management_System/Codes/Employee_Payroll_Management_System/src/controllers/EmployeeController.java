@@ -8,13 +8,19 @@ import utils.Acceptable;
 import utils.DataSource;
 import utils.Inputter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class EmployeeController implements IList<Employee> {
     
     DataSource context = DataSource.getInstance();
-    
+
+    /*
+     * ####################################################
+     * Add new employee
+     * ####################################################
+     */
     @Override
     public Employee Add() {
         
@@ -45,8 +51,8 @@ public class EmployeeController implements IList<Employee> {
                 false, null, null,
                 true, "Invalid role! Must be one of: Developer, Tester, Manager, HR",
                 input -> {
-                    for (EmployeeRole rol : enums.EmployeeRole.values()) {
-                        if (rol.equals(input.trim())) {
+                    for (EmployeeRole rol : EmployeeRole.values()) {
+                        if (rol.name().equalsIgnoreCase(input.trim())) {
                             return true;
                         }
                     }
@@ -78,22 +84,7 @@ public class EmployeeController implements IList<Employee> {
         );
 
         // Input status
-        String status = Inputter.getString(
-                "Enter status (Active/InActive): ",
-                true, "Status cannot be empty!!!",
-                false, null, null,
-                true, "Invalid status! Must be one of: Active, InActive",
-                input -> {
-                    for (EmployeeStatus stat : enums.EmployeeStatus.values()) {
-                        if (stat.equals(input.trim())) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-        );
-        // Parse
-        EmployeeStatus parsedStatus = EmployeeStatus.parseStatus(status);
+        EmployeeStatus status = EmployeeStatus.Active;
         
         // Create new employee
         Employee newEmployee = new Employee(
@@ -103,7 +94,7 @@ public class EmployeeController implements IList<Employee> {
                 baseSalary,
                 workingDays,
                 bonus,
-                parsedStatus
+                status
         );
         
         // Add new employee object to Employee List
@@ -120,8 +111,101 @@ public class EmployeeController implements IList<Employee> {
         return null;
     }
 
+    /*
+     * ####################################################
+     * Update current employee
+     * ####################################################
+     */
     @Override
-    public Employee Update(Employee entity) {
+    public Employee Update(String id) {
+        
+        // Get exists Employee
+        Employee employee = FindById(id);
+        
+        // Return null if no employee found
+        if (employee == null) {
+            return null;
+        }
+        
+        // Input new role
+        String newRole = Inputter.getString(
+                "Enter role (Developer/Tester/Manager/HR): ",
+                false, null,
+                false, null, null,
+                true, "Invalid role! Must be one of: Developer, Tester, Manager, HR",
+                input -> {
+                    for (EmployeeRole rol : EmployeeRole.values()) {
+                        if (rol.name().equalsIgnoreCase(input.trim())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+        );
+        if (!newRole.isEmpty()) {
+            // Parse
+            EmployeeRole parsedRole = EmployeeRole.parseRole(newRole);
+            employee.setRole(parsedRole);
+        }
+        
+        // Input new base salary
+        while (true) {
+            int newBaseSalary = Inputter.getInt(
+                    "Enter base salary: ",
+                    1, 999999,
+                    false
+            );
+            
+            if (newBaseSalary == -1) {
+                break;
+            }
+            
+            employee.setBaseSalary(newBaseSalary);
+            context.markChanged();
+        }
+        
+        // Input new bonus
+        while (true) {
+            int newBonus = Inputter.getInt(
+                    "Enter base salary: ",
+                    1, 999999,
+                    false
+            );
+
+            if (newBonus == -1) {
+                break;
+            }
+
+            employee.setBonus(newBonus);
+            context.markChanged();
+        }
+        
+        // Input new status
+        String newStatus = Inputter.getString(
+                "Enter new status (Active/InActive): ",
+                false, null,
+                false, null, null,
+                true, "Invalid status! Must be one of: Active, InActive",
+                input -> {
+                    for (EmployeeStatus stat : EmployeeStatus.values()) {
+                        if (stat.name().equalsIgnoreCase(input.trim())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+        );
+        if (!newStatus.isEmpty()) {
+            // Parse
+            EmployeeStatus parsedStatus = EmployeeStatus.parseStatus(newRole);
+            employee.setStatus(parsedStatus);
+        }
+        
+        // Confirm and save changes
+        if (Inputter.confirmSave("Employee")) {
+            return employee;
+        }
+        
         return null;
     }
 
@@ -148,11 +232,21 @@ public class EmployeeController implements IList<Employee> {
         return true;
     }
 
+    /*
+     * ####################################################
+     * List all employee
+     * ####################################################
+     */
     @Override
     public List<Employee> ListAll() {
         return context.employeeList();
     }
 
+    /*
+     * ####################################################
+     * Find employee by ID
+     * ####################################################
+     */
     @Override
     public Employee FindById(String id) {
         for (Employee employee : context.employeeList()) {
@@ -162,6 +256,62 @@ public class EmployeeController implements IList<Employee> {
         }
         
         return null;
+    }
+
+    /*
+     * ####################################################
+     * Find employee by name
+     * ####################################################
+     */
+    public List<Employee> FindByName(String name) {
+        
+        List<Employee> foundEmployee = new ArrayList<>();
+        
+        for (Employee employee : context.employeeList()) {
+            if (employee.getName().contains(name)) {
+                foundEmployee.add(employee);
+            }
+        }
+        
+        return foundEmployee;
+    }
+
+    /*
+     * ####################################################
+     * Find employee by role
+     * ####################################################
+     */
+    public List<Employee> FindByRole(String role) {
+
+        List<Employee> foundEmployee = new ArrayList<>();
+        
+        for (Employee employee : context.employeeList()) {
+            String parsedRole = EmployeeRole.parseRole(employee.getRole());
+            if (parsedRole.contains(role)) {
+                foundEmployee.add(employee);
+            }
+        }
+
+        return foundEmployee;
+    }
+
+    /*
+     * ####################################################
+     * Find employee by status
+     * ####################################################
+     */
+    public List<Employee> FindByStatus(String status) {
+
+        List<Employee> foundEmployee = new ArrayList<>();
+
+        for (Employee employee : context.employeeList()) {
+            String parsedStatus = EmployeeStatus.parseStatus(employee.getStatus());
+            if (parsedStatus.equalsIgnoreCase(status)) {
+                foundEmployee.add(employee);
+            }
+        }
+
+        return foundEmployee;
     }
 
     @Override
