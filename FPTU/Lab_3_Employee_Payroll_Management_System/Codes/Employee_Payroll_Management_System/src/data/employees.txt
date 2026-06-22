@@ -11,3 +11,4 @@ E011, Karen Lee, HR, 1050, 20, 80, Active
 E012, Leo Martin, Manager, 2100, 17, 500, InActive
 E013, Nina Clark, Developer, 1350, 23, 280, Active
 E015, Brooke Guest, Manager, 2050, 25, 380, Active
+E999, hat, Developer, 12000, 23, 12, Active

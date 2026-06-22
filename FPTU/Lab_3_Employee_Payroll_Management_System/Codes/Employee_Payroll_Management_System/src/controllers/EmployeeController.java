@@ -132,7 +132,7 @@ public class EmployeeController implements IList<Employee> {
                 "Enter role (Developer/Tester/Manager/HR): ",
                 false, null,
                 false, null, null,
-                true, "Invalid role! Must be one of: Developer, Tester, Manager, HR",
+                false, null,
                 input -> {
                     for (EmployeeRole rol : EmployeeRole.values()) {
                         if (rol.name().equalsIgnoreCase(input.trim())) {
@@ -151,9 +151,9 @@ public class EmployeeController implements IList<Employee> {
         // Input new base salary
         while (true) {
             int newBaseSalary = Inputter.getInt(
-                    "Enter base salary: ",
+                    "Enter new base salary: ",
                     1, 999999,
-                    false
+                    true
             );
             
             if (newBaseSalary == -1) {
@@ -167,9 +167,9 @@ public class EmployeeController implements IList<Employee> {
         // Input new bonus
         while (true) {
             int newBonus = Inputter.getInt(
-                    "Enter base salary: ",
+                    "Enter new bonus: ",
                     1, 999999,
-                    false
+                    true
             );
 
             if (newBonus == -1) {
@@ -183,9 +183,9 @@ public class EmployeeController implements IList<Employee> {
         // Input new status
         String newStatus = Inputter.getString(
                 "Enter new status (Active/InActive): ",
-                false, null,
+                true, null,
                 false, null, null,
-                true, "Invalid status! Must be one of: Active, InActive",
+                false, null,
                 input -> {
                     for (EmployeeStatus stat : EmployeeStatus.values()) {
                         if (stat.name().equalsIgnoreCase(input.trim())) {
@@ -197,7 +197,7 @@ public class EmployeeController implements IList<Employee> {
         );
         if (!newStatus.isEmpty()) {
             // Parse
-            EmployeeStatus parsedStatus = EmployeeStatus.parseStatus(newRole);
+            EmployeeStatus parsedStatus = EmployeeStatus.parseStatus(newStatus);
             employee.setStatus(parsedStatus);
         }
         
@@ -312,6 +312,27 @@ public class EmployeeController implements IList<Employee> {
         }
 
         return foundEmployee;
+    }
+
+    /*
+     * ####################################################
+     * Calculate payroll
+     * ####################################################
+     */
+    public int CalculatePayroll() {
+        
+        int total = 0;
+        
+        List<Employee> employees = FindByStatus("Active");
+        
+        if (employees.isEmpty()) {
+            return 0;
+        }
+        for (Employee employee : employees) {
+            total += employee.getBaseSalary();
+        }
+        
+        return total;
     }
 
     @Override

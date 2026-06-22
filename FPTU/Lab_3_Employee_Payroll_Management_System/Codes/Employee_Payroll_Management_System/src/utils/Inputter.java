@@ -125,7 +125,11 @@ public class Inputter {
             System.out.print(inputMessage);
             String input = sc.nextLine().trim();
 
-            if (allowEmptyInput && input.isEmpty()) {
+            if (input.isEmpty()) {
+                if (allowEmptyInput) {
+                    return "";
+                }
+
                 System.out.println(emptyMessage);
                 continue;
             }
@@ -135,7 +139,11 @@ public class Inputter {
                 continue;
             }
 
-            if (validator != null && !validator.test(input)) {
+            // Custom validation
+            if (!input.isEmpty()
+                    && validator != null
+                    && !validator.test(input)) {
+
                 if (allowUnique) {
                     System.out.println(uniqueMessage);
                 }
@@ -165,7 +173,12 @@ public class Inputter {
             input = sc.nextLine().trim();
 
             if (input.isEmpty()) {
-                return -1;
+                if (allowEmptyInput) {
+                    return -1;
+                }
+
+                System.out.println("Input cannot be empty.");
+                continue;
             }
 
             try {

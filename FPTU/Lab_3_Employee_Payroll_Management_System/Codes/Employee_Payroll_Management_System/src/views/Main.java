@@ -40,10 +40,10 @@ public class Main {
             UI.titleHeader(appTitle, 74);
             System.out.println("| 1. Load employee data from file                                        |"); // Done
             System.out.println("| 2. Add a new employee                                                  |"); // Done
-            System.out.println("| 3. Update employee information                                         |"); 
+            System.out.println("| 3. Update employee information                                         |"); // Done
             System.out.println("| 4. Remove an employee by ID                                            |"); // Done
             System.out.println("| 5. Search employees by attribute                                       |"); // Done
-            System.out.println("| 6. Calculate monthly payroll                                           |"); 
+            System.out.println("| 6. Calculate monthly payroll                                           |"); // Done
             System.out.println("| 7. Display employee list                                               |"); // Done
             System.out.println("| 8. Save data to file                                                   |"); // Done
             System.out.println("| 9. Quit program                                                        |"); // Done
@@ -76,7 +76,7 @@ public class Main {
                     if (employeeController.Update(updateId) != null) {
                         System.out.println("\nEmployee updated!!!\n");
                     } else {
-                        System.out.println("\nCannot update current employee!!!\n");
+                        System.out.println("\nEmployee not found!!!\n");
                     }
                     break;
                 case 4:
@@ -201,6 +201,12 @@ public class Main {
                     
                     break;
                 case 6:
+                    int calPayroll = employeeController.CalculatePayroll();
+                    if (calPayroll > 0) {
+                        System.out.println("\nTotal Salary: " + calPayroll + "\n");
+                    } else {
+                        System.out.println("\nNo active employees found for calculate\n");
+                    }
                     break;
                 case 7:
                     if (employeeList != null) {
