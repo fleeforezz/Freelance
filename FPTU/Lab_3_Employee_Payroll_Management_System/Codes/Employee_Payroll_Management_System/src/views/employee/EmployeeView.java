@@ -115,12 +115,100 @@ public class EmployeeView {
      * ####################################################
      */
     public static void UpdateEmployee(EmployeeController employeeController) {
+
         String updateId = Inputter.getString(
                 "\nEnter employee id: ",
                 "ID cannot be empty!!!"
         );
+        
+        Employee oldEmployee  = employeeController.FindById(updateId);
 
-        if (employeeController.Update(updateId) != null) {
+        if (oldEmployee == null) {
+            System.out.println("Employee not found.");
+            return;
+        }
+
+        Employee updatedEmployee = new Employee(
+                oldEmployee.getId(),
+                oldEmployee.getRole(),
+                oldEmployee.getBaseSalary(),
+                oldEmployee.getBonus(),
+                oldEmployee.getStatus()
+        );
+        
+        // Input new role
+        String newRole = Inputter.getString(
+                "Enter role (Developer/Tester/Manager/HR): ",
+                false, null,
+                false, null, null,
+                false, null,
+                input -> {
+                    for (EmployeeRole rol : EmployeeRole.values()) {
+                        if (rol.name().equalsIgnoreCase(input.trim())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+        );
+        if (!newRole.isEmpty()) {
+            // Parse
+            EmployeeRole parsedRole = EmployeeRole.parseRole(newRole);
+            updatedEmployee.setRole(parsedRole);
+        }
+
+        // Input new base salary
+        while (true) {
+            int newBaseSalary = Inputter.getInt(
+                    "Enter new base salary: ",
+                    1, 999999,
+                    true
+            );
+
+            if (newBaseSalary == -1) {
+                break;
+            }
+
+            updatedEmployee.setBaseSalary(newBaseSalary);
+        }
+
+        // Input new bonus
+        while (true) {
+            int newBonus = Inputter.getInt(
+                    "Enter new bonus: ",
+                    1, 999999,
+                    true
+            );
+
+            if (newBonus == -1) {
+                break;
+            }
+
+            updatedEmployee.setBonus(newBonus);
+        }
+
+        // Input new status
+        String newStatus = Inputter.getString(
+                "Enter new status (Active/InActive): ",
+                true, null,
+                false, null, null,
+                false, null,
+                input -> {
+                    for (EmployeeStatus stat : EmployeeStatus.values()) {
+                        if (stat.name().equalsIgnoreCase(input.trim())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+        );
+        if (!newStatus.isEmpty()) {
+            // Parse
+            EmployeeStatus parsedStatus = EmployeeStatus.parseStatus(newStatus);
+            updatedEmployee.setStatus(parsedStatus);
+        }
+
+        if (employeeController.Update(updateId,  updatedEmployee) != null) {
             System.out.println("\nEmployee updated!!!\n");
         } else {
             System.out.println("\nEmployee not found!!!\n");

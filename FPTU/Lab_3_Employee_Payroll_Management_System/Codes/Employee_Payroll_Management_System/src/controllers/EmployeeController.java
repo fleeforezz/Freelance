@@ -4,12 +4,10 @@ import enums.EmployeeRole;
 import enums.EmployeeStatus;
 import interfaces.IList;
 import models.Employee;
-import utils.Acceptable;
 import utils.DataSource;
 import utils.Inputter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class EmployeeController implements IList<Employee> {
@@ -42,96 +40,26 @@ public class EmployeeController implements IList<Employee> {
      * ####################################################
      */
     @Override
-    public Employee Update(String id) {
+    public Employee Update(String id, Employee employee) {
         
-        // Get exists Employee
-        Employee employee = FindById(id);
+        Employee existing = FindById(id);
         
         // Return null if no employee found
-        if (employee == null) {
+        if (existing == null) {
             return null;
         }
         
-        // Input new role
-        String newRole = Inputter.getString(
-                "Enter role (Developer/Tester/Manager/HR): ",
-                false, null,
-                false, null, null,
-                false, null,
-                input -> {
-                    for (EmployeeRole rol : EmployeeRole.values()) {
-                        if (rol.name().equalsIgnoreCase(input.trim())) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-        );
-        if (!newRole.isEmpty()) {
-            // Parse
-            EmployeeRole parsedRole = EmployeeRole.parseRole(newRole);
-            employee.setRole(parsedRole);
-        }
-        
-        // Input new base salary
-        while (true) {
-            int newBaseSalary = Inputter.getInt(
-                    "Enter new base salary: ",
-                    1, 999999,
-                    true
-            );
-            
-            if (newBaseSalary == -1) {
-                break;
-            }
-            
-            employee.setBaseSalary(newBaseSalary);
-            context.markChanged();
-        }
-        
-        // Input new bonus
-        while (true) {
-            int newBonus = Inputter.getInt(
-                    "Enter new bonus: ",
-                    1, 999999,
-                    true
-            );
-
-            if (newBonus == -1) {
-                break;
-            }
-
-            employee.setBonus(newBonus);
-            context.markChanged();
-        }
-        
-        // Input new status
-        String newStatus = Inputter.getString(
-                "Enter new status (Active/InActive): ",
-                true, null,
-                false, null, null,
-                false, null,
-                input -> {
-                    for (EmployeeStatus stat : EmployeeStatus.values()) {
-                        if (stat.name().equalsIgnoreCase(input.trim())) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-        );
-        if (!newStatus.isEmpty()) {
-            // Parse
-            EmployeeStatus parsedStatus = EmployeeStatus.parseStatus(newStatus);
-            employee.setStatus(parsedStatus);
-        }
-        
         // Confirm and save changes
-        if (Inputter.confirmSave("Employee")) {
-            return employee;
+        if (!Inputter.confirmSave("Employee")) {
+            return null;
         }
+
+        existing.setRole(employee.getRole());
+        existing.setBaseSalary(employee.getBaseSalary());
+        existing.setBonus(employee.getBonus());
+        existing.setStatus(employee.getStatus());
         
-        return null;
+        return existing;
     }
 
     @Override

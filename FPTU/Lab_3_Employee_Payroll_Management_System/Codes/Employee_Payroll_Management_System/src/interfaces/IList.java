@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IList<T> {
     T Add(T entity);
-    T Update(String id);
+    T Update(String id, T entity);
     boolean Delete(String id);
     List<T> ListAll();
     T FindById(String id);

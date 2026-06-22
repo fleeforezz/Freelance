@@ -1,5 +1,6 @@
 package models;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import enums.EmployeeRole;
 import enums.EmployeeStatus;
 
@@ -20,6 +21,14 @@ public class Employee {
         this.role = role;
         this.baseSalary = baseSalary;
         this.workingDays = workingDays;
+        this.bonus = bonus;
+        this.status = status;
+    }
+
+    public Employee(String id, EmployeeRole role, int baseSalary, int bonus, EmployeeStatus status) {
+        this.id = id;
+        this.role = role;
+        this.baseSalary = baseSalary;
         this.bonus = bonus;
         this.status = status;
     }
