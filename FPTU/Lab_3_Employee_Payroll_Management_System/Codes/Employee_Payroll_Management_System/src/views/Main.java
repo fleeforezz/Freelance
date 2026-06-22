@@ -1,11 +1,7 @@
 package views;
 
 import controllers.EmployeeController;
-import models.Employee;
 import utils.Inputter;
-import views.Components.TestUI;
-
-import java.util.List;
 
 public class Main {
 
@@ -33,9 +29,6 @@ public class Main {
         // Controllers
         EmployeeController employeeController = new EmployeeController();
 
-        // Load Data from file then add to this list
-        List<Employee> employeeList = employeeController.ListAll();
-
         do {
             UI.titleHeader(appTitle, 74);
             System.out.println("| 1. Load employee data from file                                        |"); // Done
@@ -58,39 +51,16 @@ public class Main {
             
             switch (choice) {
                 case 1:
-                    employeeController.reloadAll();
+                    EmployeeView.LoadEmployeeData(employeeController);
                     break;
                 case 2:
-                    if (employeeController.Add() != null) {
-                        System.out.println("\nNew employee created!!!\n");
-                    } else {
-                        System.out.println("\nCannot create new club!!!\n");
-                    }
+                    EmployeeView.AddEmployee(employeeController);
                     break;
                 case 3:
-                    String updateId = Inputter.getString(
-                            "\nEnter employee id: ",
-                            "ID cannot be empty!!!"
-                    );
-                    
-                    if (employeeController.Update(updateId) != null) {
-                        System.out.println("\nEmployee updated!!!\n");
-                    } else {
-                        System.out.println("\nEmployee not found!!!\n");
-                    }
+                    EmployeeView.UpdateEmployee(employeeController);
                     break;
                 case 4:
-                    String removeId = Inputter.getString(
-                            "\nEnter employee id: ",
-                            "ID cannot be empty!!!"
-                    );
-                    
-                    boolean isDeleted = employeeController.Delete(removeId);
-                    if (isDeleted) {
-                        UI.success("\nEmployee has been removed!!!\n");
-                    } else {
-                        UI.error("\nEmployee does not exists!!!\n");
-                    }
+                    EmployeeView.RemoveEmployee(employeeController);
                     break;
                 case 5:
                     int searchOption = 0;
@@ -113,83 +83,32 @@ public class Main {
                         
                         switch (searchOption) {
                             case 1:
-                                String searchId = Inputter.getString(
-                                        "Enter employee id: ",
-                                        "Id cannot be empty!!!"
+                                EmployeeView.SearchEmployeeById(
+                                        employeeController, 
+                                        employeeCols, 
+                                        employeeColWidth
                                 );
-                                
-                                Employee idEmployee = employeeController.FindById(searchId);
-                                
-                                if (idEmployee != null) {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    System.out.print(idEmployee.display());
-                                    UI.border(102);
-                                } else {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    System.out.println("| No matching employee found!!!");
-                                    UI.border(102);
-                                }
-                                
                                 break;
                             case 2:
-                                String searchName = Inputter.getString(
-                                        "Enter employee name: ",
-                                        "Name cannot be empty!!!"
+                                EmployeeView.SearchEmployeeByName(
+                                        employeeController,
+                                        employeeCols,
+                                        employeeColWidth
                                 );
-                                
-                                List<Employee> nameEmployees = employeeController.FindByName(searchName);
-                                
-                                if (!nameEmployees.isEmpty()) {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    for (Employee employee : nameEmployees) {
-                                        System.out.print(employee.display());
-                                    }
-                                    UI.border(102);
-                                } else {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    System.out.println("| No matching employee found!!!");
-                                    UI.border(102);
-                                }
                                 break;
                             case 3:
-                                String searchRole = Inputter.getString(
-                                        "Enter employee role: ",
-                                        "Role cannot be empty!!!"
+                                EmployeeView.SearchEmployeeByRole(
+                                        employeeController,
+                                        employeeCols,
+                                        employeeColWidth
                                 );
-                                
-                                List<Employee> roleEmployees = employeeController.FindByRole(searchRole);
-                                
-                                if (!roleEmployees.isEmpty()) {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    for (Employee employee : roleEmployees) {
-                                        System.out.print(employee.display());
-                                    }
-                                    UI.border(102);
-                                } else {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    System.out.println("| No matching employee found!!!");
-                                    UI.border(102);
-                                }
                                 break;
                             case 4:
-                                String searchStatus = Inputter.getString(
-                                        "Enter employee status: ",
-                                        "Status cannot be empty!!!"
+                                EmployeeView.SearchEmployeeByStatus(
+                                        employeeController,
+                                        employeeCols,
+                                        employeeColWidth
                                 );
-
-                                List<Employee> statusEmployees = employeeController.FindByStatus(searchStatus);
-
-                                if (!statusEmployees.isEmpty()) {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    for (Employee employee : statusEmployees) {
-                                        System.out.print(employee.display());
-                                    }
-                                    UI.border(102);
-                                } else {
-                                    UI.tableHeader(employeeCols, employeeColWidth);
-                                    System.out.println("| No matching employee found!!!");
-                                    UI.border(102);
-                                }
                                 break;
                             case 5:
                                 break;
@@ -201,36 +120,20 @@ public class Main {
                     
                     break;
                 case 6:
-                    int calPayroll = employeeController.CalculatePayroll();
-                    if (calPayroll > 0) {
-                        System.out.println("\nTotal Salary: " + calPayroll + "\n");
-                    } else {
-                        System.out.println("\nNo active employees found for calculate\n");
-                    }
+                    EmployeeView.CalculatePayroll(employeeController);
                     break;
                 case 7:
-                    if (employeeList != null) {
-                        UI.tableHeader(employeeCols, employeeColWidth);
-                        for (Employee employee : employeeList) {
-                            System.out.print(employee.display());
-                        }
-                        UI.border(102);
-                    } else {
-                        UI.tableHeader(employeeCols, employeeColWidth);
-                        UI.error("No data in system");
-                        UI.border(102);
-                    }
+                    EmployeeView.ListAllEmployee(
+                            employeeController,
+                            employeeCols,
+                            employeeColWidth
+                    );
                     break;
                 case 8:
-                    employeeController.save();
-                    System.out.println("\nData has been saved to files successfully!\n");
+                    EmployeeView.SaveToFile(employeeController);
                     break;
                 case 9:
-                    if (employeeController.hasUnsavedChanges()) {
-                        employeeController.save();
-                        System.out.println("\nUnsaved changes detected — data has been saved.");
-                    }
-                    System.out.println("Goodbye !!!");
+                    EmployeeView.QuitProgram(employeeController);
                     break;
                 default:
                     System.out.println("Invalid choice, please try again !!!");

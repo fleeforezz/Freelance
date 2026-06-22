@@ -3,7 +3,7 @@ package interfaces;
 import java.util.List;
 
 public interface IList<T> {
-    T Add();
+    T Add(T entity);
     T Update(String id);
     boolean Delete(String id);
     List<T> ListAll();

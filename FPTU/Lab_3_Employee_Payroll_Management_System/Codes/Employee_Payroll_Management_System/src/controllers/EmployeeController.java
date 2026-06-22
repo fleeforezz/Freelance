@@ -22,90 +22,15 @@ public class EmployeeController implements IList<Employee> {
      * ####################################################
      */
     @Override
-    public Employee Add() {
-        
-        // Input ID
-        String id = Inputter.getString(
-                "\nEnter id: ",
-                true, "Id cannot be empty!!!",
-                true, Acceptable.EMPLOYEE_VALID_ID, "Id must be Exxx (e.g., E001)",
-                true, "Employee already exists!!!",
-                employeeId -> {
-                    if (FindById(employeeId) != null) {
-                        return false;
-                    }
-                    return true;
-                }
-        );
-        
-        // Input name
-        String name = Inputter.getString(
-                "Enter name: ",
-                "Employee name cannot be empty!!!"
-        );
-        
-        // Input role
-        String role = Inputter.getString(
-                "Enter role (Developer/Tester/Manager/HR): ",
-                true, "Role cannot be empty!!!",
-                false, null, null,
-                true, "Invalid role! Must be one of: Developer, Tester, Manager, HR",
-                input -> {
-                    for (EmployeeRole rol : EmployeeRole.values()) {
-                        if (rol.name().equalsIgnoreCase(input.trim())) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-        );
-        // Parse
-        EmployeeRole parsedRole = EmployeeRole.parseRole(role);
-        
-        // Input base salary
-        int baseSalary = Inputter.getInt(
-                "Enter base salary: ",
-                1, 999999,
-                false
-        );
-        
-        // Input working days
-        int workingDays = Inputter.getInt(
-                "Enter working days: ",
-                0, 26,
-                false
-        );
-        
-        // Input bonus
-        int bonus = Inputter.getInt(
-                "Enter bonus: ",
-                0, 99999999,
-                false
-        );
-
-        // Input status
-        EmployeeStatus status = EmployeeStatus.Active;
-        
-        // Create new employee
-        Employee newEmployee = new Employee(
-                id,
-                name,
-                parsedRole,
-                baseSalary,
-                workingDays,
-                bonus,
-                status
-        );
+    public Employee Add(Employee employee) {
         
         // Add new employee object to Employee List
-        context.employeeList().add(newEmployee);
+        context.employeeList().add(employee);
         context.markChanged();
         
         // Confirm and save
-        if (Inputter.confirmSave(
-                "Employee"
-        )) {
-            return newEmployee;
+        if (Inputter.confirmSave("Employee")) {
+            return employee;
         }
         
         return null;
