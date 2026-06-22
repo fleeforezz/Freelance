@@ -33,6 +33,16 @@ public class Employee {
         this.status = status;
     }
 
+    public Employee(Employee oldEmployee) {
+        this.id = oldEmployee.getId();
+        this.name = oldEmployee.getName();
+        this.role = oldEmployee.getRole();
+        this.baseSalary = oldEmployee.baseSalary;
+        this.workingDays = oldEmployee.getWorkingDays();
+        this.bonus = oldEmployee.getBonus();
+        this.status = oldEmployee.getStatus();
+    }
+
     public String getId() {
         return id;
     }
