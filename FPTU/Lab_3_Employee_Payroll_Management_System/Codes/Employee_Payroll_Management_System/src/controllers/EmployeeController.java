@@ -1,6 +1,7 @@
 package controllers;
 
 import enums.EmployeeRole;
+import enums.EmployeeStatus;
 import interfaces.IList;
 import models.Employee;
 import utils.Acceptable;
@@ -52,6 +53,71 @@ public class EmployeeController implements IList<Employee> {
                     return false;
                 }
         );
+        // Parse
+        EmployeeRole parsedRole = EmployeeRole.parseRole(role);
+        
+        // Input base salary
+        int baseSalary = Inputter.getInt(
+                "Enter base salary: ",
+                1, 999999,
+                false
+        );
+        
+        // Input working days
+        int workingDays = Inputter.getInt(
+                "Enter working days: ",
+                0, 26,
+                false
+        );
+        
+        // Input bonus
+        int bonus = Inputter.getInt(
+                "Enter bonus: ",
+                0, 99999999,
+                false
+        );
+
+        // Input status
+        String status = Inputter.getString(
+                "Enter status (Active/InActive): ",
+                true, "Status cannot be empty!!!",
+                false, null, null,
+                true, "Invalid status! Must be one of: Active, InActive",
+                input -> {
+                    for (EmployeeStatus stat : enums.EmployeeStatus.values()) {
+                        if (stat.equals(input.trim())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+        );
+        // Parse
+        EmployeeStatus parsedStatus = EmployeeStatus.parseStatus(status);
+        
+        // Create new employee
+        Employee newEmployee = new Employee(
+                id,
+                name,
+                parsedRole,
+                baseSalary,
+                workingDays,
+                bonus,
+                parsedStatus
+        );
+        
+        // Add new employee object to Employee List
+        context.employeeList().add(newEmployee);
+        context.markChanged();
+        
+        // Confirm and save
+        if (Inputter.confirmSave(
+                "Employee"
+        )) {
+            return newEmployee;
+        }
+        
+        return null;
     }
 
     @Override
@@ -61,7 +127,25 @@ public class EmployeeController implements IList<Employee> {
 
     @Override
     public boolean Delete(String id) {
-        return false;
+        
+        // Get exists employee
+        Employee employee = FindById(id);
+        
+        // Return null if no employee found
+        if (employee == null) {
+            return false;
+        }
+        
+        // Remove employee from list
+        context.employeeList().remove(employee);
+        context.markChanged();
+        
+        // Confirm and save changes
+        Inputter.confirmSave(
+                "Employee"
+        );
+        
+        return true;
     }
 
     @Override

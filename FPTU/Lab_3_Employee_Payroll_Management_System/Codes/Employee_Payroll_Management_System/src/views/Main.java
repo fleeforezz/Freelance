@@ -60,10 +60,30 @@ public class Main {
                     employeeController.reloadAll();
                     break;
                 case 2:
+                    if (employeeController.Add() != null) {
+                        System.out.println("\\nNew employee created!!!\\n");
+                    } else {
+                        System.out.println("\\nCannot create new club!!!\\n");
+                    }
                     break;
                 case 3:
                     break;
                 case 4:
+                    String id = Inputter.getString(
+                            "\nEnter employee id: ",
+                            "ID cannot be empty!!!"
+                    );
+                    
+                    boolean isDeleted = employeeController.Delete(id);
+                    if (isDeleted) {
+                        UI.tableHeader(employeeCols, employeeColWidth);
+                        UI.success("Employee has been removed!!!");
+                        UI.border(102);
+                    } else {
+                        UI.tableHeader(employeeCols, employeeColWidth);
+                        UI.error("Employee does not exists!!!");
+                        UI.border(102);
+                    }
                     break;
                 case 5:
                     break;
