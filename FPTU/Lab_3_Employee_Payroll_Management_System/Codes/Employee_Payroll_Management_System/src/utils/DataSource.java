@@ -39,8 +39,7 @@ public class DataSource {
      * Club
      * ###################
      */
-//    private static final String CLUB_FILE_PATH = "D:\\Repository\\Github\\Fleeforezz\\Lab\\teaching\\Coding\\clubs.txt";
-    private final String CLUB_FILE_PATH = "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_3_Employee_Payroll_Management_System\\Codes\\Employee_Payroll_Management_System\\src\\data\\employees.txt";
+    private final String CLUB_FILE_PATH = "./src/data/employees.txt";
     
     private List<Employee> employees = null;
     
