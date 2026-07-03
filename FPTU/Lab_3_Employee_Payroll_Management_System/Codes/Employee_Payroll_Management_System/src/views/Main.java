@@ -1,6 +1,7 @@
 package views;
 
 import controllers.EmployeeController;
+import models.Employee;
 import utils.Inputter;
 import views.employee.EmployeeActionView;
 import views.employee.EmployeeReportView;

@@ -35,7 +35,7 @@ public class EmployeeView {
         if (employeeController.Add(newEmployee) != null) {
             System.out.println("\nNew employee created!!!\n");
         } else {
-            System.out.println("\nCannot create new club!!!\n");
+            System.out.println("\nCannot create new employee!!!\n");
         }
     }
     
