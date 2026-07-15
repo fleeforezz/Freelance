@@ -3,8 +3,8 @@ package interfaces;
 import java.util.List;
 
 public interface IList<T> {
-    T add(T entity);
-    T update(String id, T entity);
+    T add();
+    T update(String id);
     boolean delete(String id);
     List<T> listAll();
     T findById(String id);

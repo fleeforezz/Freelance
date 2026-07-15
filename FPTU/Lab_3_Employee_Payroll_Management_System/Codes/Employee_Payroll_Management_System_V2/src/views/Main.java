@@ -60,76 +60,23 @@ public class Main {
                     employeeController.reloadAll();
                     break;
                 case 2:
-                    String newId = Inputter.getString(
-                            "\nEnter id: ",
-                            true, "Id cannot be empty!!!",
-                            true, Acceptable.EMPLOYEE_VALID_ID, "Id must be Exxx (e.g., E001)",
-                            true, "Employee already exists!!!",
-                            employeeId -> {
-                                if (employeeController.findById(employeeId) != null) {
-                                    return false;
-                                }
-                                return true;
-                            }
-                    );
-
-                    String newName = Inputter.getString(
-                            "Enter name: ",
-                            "Employee name cannot be empty!!!"
-                    );
-
-                    String newRole = Inputter.getString(
-                            "Enter role (Developer/Tester/Manager/HR): ",
-                            true, "Role cannot be empty!!!",
-                            false, null, null,
-                            true, "Invalid role! Must be one of: Developer, Tester, Manager, HR",
-                            input -> {
-                                for (EmployeeRole rol : EmployeeRole.values()) {
-                                    if (rol.name().equalsIgnoreCase(input.trim())) {
-                                        return true;
-                                    }
-                                }
-                                return false;
-                            }
-                    );
-                    EmployeeRole parsedNewRole = EmployeeRole.parseRole(newRole);
-
-                    int newBaseSalary = Inputter.getInt(
-                            "Enter base salary: ",
-                            1, 999999,
-                            false
-                    );
-
-                    int newWorkingDays = Inputter.getInt(
-                            "Enter working days: ",
-                            0, 26,
-                            false
-                    );
-
-                    int newBonus = Inputter.getInt(
-                            "Enter bonus: ",
-                            0, 99999999,
-                            false
-                    );
-
-                    Employee newEmployee = new Employee(
-                            newId,
-                            newName,
-                            parsedNewRole,
-                            newBaseSalary,
-                            newWorkingDays,
-                            newBonus,
-                            EmployeeStatus.Active
-                    );
-
-                    if (employeeController.add(newEmployee) != null) {
+                    if (employeeController.add() != null) {
                         System.out.println("\nNew employee created!!!\n");
                     } else {
                         System.out.println("\nCannot create new employee!!!\n");
                     }
-
                     break;
                 case 3:
+                    String updateId = Inputter.getString(
+                            "\nEnter employee id: ",
+                            "ID cannot be empty!!!"
+                    );
+
+                    if (employeeController.update(updateId) != null) {
+                        System.out.println("\nEmployee has been updated!!!\n");
+                    } else {
+                        System.out.println("\nEmployee not found!!!\n");
+                    }
 
                     break;
                 case 4:
@@ -139,9 +86,9 @@ public class Main {
                     );
 
                     if (employeeController.delete(removeId)) {
-                        UI.success("\nEmployee has been removed!!!\n");
+                        System.out.println("\nEmployee has been removed!!!\n");
                     } else {
-                        UI.error("\nEmployee does not exists!!!\n");
+                        System.out.println("\nEmployee does not exists!!!\n");
                     }
                     break;
                 case 5:
@@ -175,11 +122,11 @@ public class Main {
                                 if (foundEmployee != null) {
                                     UI.tableHeader(employeeCols, employeeColWidth);
                                     System.out.print(foundEmployee.display());
-                                    UI.border(50);
+                                    UI.border(102);
                                 } else {
                                     UI.tableHeader(employeeCols, employeeColWidth);
                                     System.out.println("| No matching employee found!!!");
-                                    UI.border(50);
+                                    UI.border(102);
                                 }
                                 break;
                             case 2:
@@ -224,7 +171,7 @@ public class Main {
                                         "Status cannot be empty!!!"
                                 );
 
-                                foundEmployees = employeeController.findByRole(searchStatus);
+                                foundEmployees = employeeController.findByStatus(searchStatus);
                                 UI.tableHeader(employeeCols, employeeColWidth);
                                 if (foundEmployees.isEmpty()) {
                                     System.out.println("| No matching employee found!");
@@ -245,7 +192,10 @@ public class Main {
 
                     break;
                 case 6:
-                    employeeController.calculatePayroll();
+                    System.out.println(
+                            "Monthly payroll: $" +
+                            employeeController.calculatePayroll()
+                    );
                     break;
                 case 7:
                     // Load Data from file then add to this list
