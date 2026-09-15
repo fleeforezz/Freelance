@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Controllers/Controllers.csproj" />
+  <Project Path="Interfaces/Interfaces.csproj" />
+  <Project Path="Models/Models.csproj" />
+  <Project Path="NetFootballClubPlayerManagement/NetFootballClubPlayerManagement.csproj" />
+  <Project Path="Utils/Utils.csproj" />
+</Solution>
