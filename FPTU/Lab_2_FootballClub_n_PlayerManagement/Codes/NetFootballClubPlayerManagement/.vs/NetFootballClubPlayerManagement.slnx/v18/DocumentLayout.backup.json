@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{171CC381-7CB6-4B2C-A52C-CFB5ABEF38B3}|Models\\Models.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\models\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{171CC381-7CB6-4B2C-A52C-CFB5ABEF38B3}|Models\\Models.csproj|solutionrelative:models\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CE8135A7-138A-4F00-B9D2-DEA8CBD2D554}|Interfaces\\Interfaces.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\interfaces\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE8135A7-138A-4F00-B9D2-DEA8CBD2D554}|Interfaces\\Interfaces.csproj|solutionrelative:interfaces\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3821580-1F39-4026-AF34-5F1E380054F2}|Utils\\Utils.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\utils\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3821580-1F39-4026-AF34-5F1E380054F2}|Utils\\Utils.csproj|solutionrelative:utils\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C874DF89-5907-4770-95E3-96CC7622362D}|Utils\\Utils.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\utils\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C874DF89-5907-4770-95E3-96CC7622362D}|Utils\\Utils.csproj|solutionrelative:utils\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A46FA59E-6A9F-44E1-957F-968320899EEB}|Interfaces\\Interfaces.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\interfaces\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A46FA59E-6A9F-44E1-957F-968320899EEB}|Interfaces\\Interfaces.csproj|solutionrelative:interfaces\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4E41285D-680D-430B-B78D-751A1B14733A}|Models\\Models.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\models\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E41285D-680D-430B-B78D-751A1B14733A}|Models\\Models.csproj|solutionrelative:models\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46AC194-BDAE-4AC8-A7DD-1A0FF0C18C25}|Controllers\\Controllers.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\controllers\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46AC194-BDAE-4AC8-A7DD-1A0FF0C18C25}|Controllers\\Controllers.csproj|solutionrelative:controllers\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEB032DA-7D2A-38BB-FEFE-56CA61FC1AE2}|NetFootballClubPlayerManagement\\NetFootballClubPlayerManagement.csproj|d:\\github\\fleeforezz\\freelance\\fptu\\lab_2_footballclub_n_playermanagement\\codes\\netfootballclubplayermanagement\\netfootballclubplayermanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEB032DA-7D2A-38BB-FEFE-56CA61FC1AE2}|NetFootballClubPlayerManagement\\NetFootballClubPlayerManagement.csproj|solutionrelative:netfootballclubplayermanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,40 +39,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Models\\Program.cs",
-              "RelativeDocumentMoniker": "Models\\Program.cs",
-              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Models\\Program.cs",
-              "RelativeToolTip": "Models\\Program.cs",
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Interfaces\\Class1.cs",
+              "RelativeDocumentMoniker": "Interfaces\\Class1.cs",
+              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Interfaces\\Class1.cs",
+              "RelativeToolTip": "Interfaces\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-15T08:13:06.515Z",
+              "WhenOpened": "2026-09-17T03:04:33.798Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Utils\\Program.cs",
-              "RelativeDocumentMoniker": "Utils\\Program.cs",
-              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Utils\\Program.cs",
-              "RelativeToolTip": "Utils\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAJAAAAAAAAAA==",
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Utils\\Class1.cs",
+              "RelativeDocumentMoniker": "Utils\\Class1.cs",
+              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Utils\\Class1.cs",
+              "RelativeToolTip": "Utils\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-15T08:11:18.868Z",
+              "WhenOpened": "2026-09-17T03:04:21.125Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Interfaces\\Program.cs",
-              "RelativeDocumentMoniker": "Interfaces\\Program.cs",
-              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Interfaces\\Program.cs",
-              "RelativeToolTip": "Interfaces\\Program.cs",
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Models\\Class1.cs",
+              "RelativeDocumentMoniker": "Models\\Class1.cs",
+              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Models\\Class1.cs",
+              "RelativeToolTip": "Models\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-15T08:10:48.281Z",
+              "WhenOpened": "2026-09-17T03:04:11.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Controllers\\Class1.cs",
+              "RelativeDocumentMoniker": "Controllers\\Class1.cs",
+              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\Controllers\\Class1.cs",
+              "RelativeToolTip": "Controllers\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-17T03:03:54.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\NetFootballClubPlayerManagement\\Program.cs",
+              "RelativeDocumentMoniker": "NetFootballClubPlayerManagement\\Program.cs",
+              "ToolTip": "D:\\Github\\fleeforezz\\Freelance\\FPTU\\Lab_2_FootballClub_n_PlayerManagement\\Codes\\NetFootballClubPlayerManagement\\NetFootballClubPlayerManagement\\Program.cs",
+              "RelativeToolTip": "NetFootballClubPlayerManagement\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-15T08:19:18.463Z",
               "EditorCaption": ""
             }
           ]

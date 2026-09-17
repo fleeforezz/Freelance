@@ -1,7 +1,7 @@
 <Solution>
-  <Project Path="Controllers/Controllers.csproj" />
-  <Project Path="Interfaces/Interfaces.csproj" />
-  <Project Path="Models/Models.csproj" />
+  <Project Path="Controllers/Controllers.csproj" Id="b46ac194-bdae-4ac8-a7dd-1a0ff0c18c25" />
+  <Project Path="Interfaces/Interfaces.csproj" Id="ce8135a7-138a-4f00-b9d2-dea8cbd2d554" />
+  <Project Path="Models/Models.csproj" Id="4e41285d-680d-430b-b78d-751a1b14733a" />
   <Project Path="NetFootballClubPlayerManagement/NetFootballClubPlayerManagement.csproj" />
-  <Project Path="Utils/Utils.csproj" />
+  <Project Path="Utils/Utils.csproj" Id="c874df89-5907-4770-95e3-96cc7622362d" />
 </Solution>
