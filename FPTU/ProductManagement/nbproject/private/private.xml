@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/views/Main.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/utils/DataSource.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/utils/Acceptable.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/models/Product.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/models/FoodProduct.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/models/CeramicProduct.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/models/ElectricProduct.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/data/product.txt</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/controllers/ProductController.java</file>
+            <file>file:/C:/Users/jso/Downloads/ProductManagement/src/interfaces/IList.java</file>
+        </group>
+    </open-files>
+</project-private>

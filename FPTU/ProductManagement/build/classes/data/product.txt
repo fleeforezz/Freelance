@@ -1,0 +1,4 @@
+E, E01, Rice Cooker, Sharp, 1500000.0, 12, 220.0, 700.0
+E, E02, Fan, Panasonic, 800000.0, 24, 220.0, 60.0
+C, C01, Bowl Set, Minh Long, 250000.0, bowl
+F, F01, Milk, Vinamilk, 30000.0, 01/10/2026, 10/10/2026
